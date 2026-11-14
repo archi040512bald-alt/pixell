@@ -10,8 +10,9 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with: { gradle-version: 8.9 }
       - run: unzip PixelLauncher.zip
-      - name: Add missing theme
+      - name: Fix code
         run: |
+          sed -i 's/\bAppInfo\b/LauncherApp/g' PixelLauncher/app/src/main/java/com/example/pixellauncher/MainActivity.kt
           mkdir -p PixelLauncher/app/src/main/res/values
           cat > PixelLauncher/app/src/main/res/values/themes.xml <<'EOF'
           <?xml version="1.0" encoding="utf-8"?>
